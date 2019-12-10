@@ -9,7 +9,7 @@ import com.ullink.slack.simpleslackapi.impl.SlackSessionFactory;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		SlackSession session = SlackSessionFactory.createWebSocketSlackSession("xoxb-801592256240-790123214931-NVbKyHZJ3TQSPOK6wBVI51uM");
+		SlackSession session = SlackSessionFactory.createWebSocketSlackSession("");
 		ListeningToMessageEvents ltme = new ListeningToMessageEvents();
 		ltme.registeringAListener(session);
 		session.connect();
@@ -24,7 +24,7 @@ public class Main {
 	}
 }
 
-/*‘Î‰—\’è“à—e*/
-//googleƒJƒŒƒ“ƒ_[‚Æ‚Ì˜AŒg
-//“V‹C
-//ŠİŠm”F(–{Ğ‚É‚¢‚é‚©)
+/*å¯¾å¿œäºˆå®šå†…å®¹*/
+//googleã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã¨ã®é€£æº
+//å¤©æ°—
+//æ‰€åœ¨ç¢ºèª(æœ¬ç¤¾ã«ã„ã‚‹ã‹)
