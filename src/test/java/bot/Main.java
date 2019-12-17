@@ -2,29 +2,21 @@ package bot;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
 import com.ullink.slack.simpleslackapi.SlackSession;
 import com.ullink.slack.simpleslackapi.impl.SlackSessionFactory;
 
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		SlackSession session = SlackSessionFactory.createWebSocketSlackSession("Bot-Token");
+		SlackSession session = SlackSessionFactory.createWebSocketSlackSession("xoxb-801592256240-790123214931-v522hHrr569IyDDcuZVp4NPg");
 		ListeningToMessageEvents ltme = new ListeningToMessageEvents();
 		ltme.registeringAListener(session);
 		session.connect();
 		
-		GetWeatherByOkHttp gw = new GetWeatherByOkHttp();
-		System.out.println("-------------------------");
-		System.out.println(gw.result);
-		System.out.println("-------------------------");
-		String A = gw.result;
-		WeatherEntity we = Gson.fromJson(A, WeatherEntity.class);
-		
 	}
 }
 
-/*å¯¾å¿œäºˆå®šå†…å®¹*/
-//googleã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã¨ã®é€£æº
-//å¤©æ°—
-//æ‰€åœ¨ç¢ºèª(æœ¬ç¤¾ã«ã„ã‚‹ã‹)
+/*‘Î‰—\’è“à—e*/
+//googleƒJƒŒƒ“ƒ_[‚Æ‚Ì˜AŒg
+//“V‹C
+//ŠİŠm”F(–{Ğ‚É‚¢‚é‚©)
