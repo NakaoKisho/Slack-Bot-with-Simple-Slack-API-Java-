@@ -41,7 +41,7 @@ public class Identifier { //messageContentの中身を認識し応答するクラス
 					weather = gw.getWeatherByOkHttp();
 					Gson gson = new Gson();
 					WeatherEntity WeE = gson.fromJson(weather, WeatherEntity.class);
-					session.sendMessage(channel, gson.toJson(WeE.getForecast().));
+					session.sendMessage(channel, gson.toJson(WeE.getDescription()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

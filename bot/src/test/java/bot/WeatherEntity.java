@@ -1,20 +1,22 @@
 package bot;
 
+import java.util.List;
+
 public class WeatherEntity {
 
     private String publicTime;
     private String title;
     private DescriptionEntity description;
     private String link;
-    private ForecastEntity[] forecast;
+    private List<ForecastEntity> forecast;
     private LocationEntity location;
-    private PinpointLocationEntity[] pinpointLocations;
+    private List<PinpointLocationEntity> pinpointLocations;
     private CopyrightEntity copyright;
 
     public String getPublicTime() {
     	return this.publicTime;
     }
-    public String getTitile() {
+    public String getTitle() {
     	return this.title;
     }
     public DescriptionEntity getDescription() {
@@ -23,13 +25,13 @@ public class WeatherEntity {
     public String getLink() {
     	return this.link;
     }
-    public ForecastEntity[] getForecast() {
+    public List<ForecastEntity> getForecast() {
     	return this.forecast;
     }
     public LocationEntity getLocation() {
     	return this.location;
     }
-    public PinpointLocationEntity[] getPinpointLocations() {
+    public List<PinpointLocationEntity> getPinpointLocations() {
     	return this.pinpointLocations;
     }
     public CopyrightEntity getCopyright() {

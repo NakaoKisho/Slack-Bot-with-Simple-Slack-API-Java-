@@ -8,7 +8,7 @@ import com.ullink.slack.simpleslackapi.impl.SlackSessionFactory;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		SlackSession session = SlackSessionFactory.createWebSocketSlackSession("BotToken");
+		SlackSession session = SlackSessionFactory.createWebSocketSlackSession("xoxb-427362873652-874461681891-JTsZTsKlcILS7BbK23hhd5FX");
 		ListeningToMessageEvents ltme = new ListeningToMessageEvents();
 		ltme.registeringAListener(session);
 		session.connect();
@@ -16,7 +16,7 @@ public class Main {
 	}
 }
 
-/*å¯¾å¿œäºˆå®šå†…å®¹*/
-//googleã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã¨ã®é€£æº
-//å¤©æ°—
-//æ‰€åœ¨ç¢ºèª(æœ¬ç¤¾ã«ã„ã‚‹ã‹)
+/*‘Î‰—\’è“à—e*/
+//googleƒJƒŒƒ“ƒ_[‚Æ‚Ì˜AŒg
+//“V‹C
+//ŠİŠm”F(–{Ğ‚É‚¢‚é‚©)
