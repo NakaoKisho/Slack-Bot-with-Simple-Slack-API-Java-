@@ -2,24 +2,65 @@ package bot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class Greeting { //ˆ¥A‚Ì’™‘ ƒNƒ‰ƒX
+import com.ullink.slack.simpleslackapi.SlackChannel;
+import com.ullink.slack.simpleslackapi.SlackSession;
+
+
+public class Greeting {
+	private SlackChannel channel;
+	
+	public Greeting(SlackChannel channel) {
+		this.channel = channel;
+	}
+	
 	public List<String> Greetings() {
-	List<String> Greeting = new ArrayList<String>(); //ArrayList‚ğ¶¬
-	//ˆ¥A’Ç‰Á
-	Greeting.add("‚±‚ñ‚É‚¿‚Í");
-	Greeting.add("‚¨‚Í‚æ‚¤");
-	Greeting.add("‚±‚ñ‚Î‚ñ‚Í");
+	List<String> Greeting = new ArrayList<String>();
+	Greeting.add("ã‚„ã‚");
+	Greeting.add("ã‚ˆã†");
+	Greeting.add("ãŠã†");
 	Greeting.add("Hi");
-	Greeting.add("‚â‚ ");
-	Greeting.add("‚æ‚¤");
-	Greeting.add("Hello");
-	Greeting.add("ƒ¡ƒÃƒÇƒ¿ ƒĞƒÍƒÒ");
-	Greeting.add("‚¤‚¨");
-	Greeting.add("‚¤‚§");
-	Greeting.add("„H„t„‚„p„r„u„z„„„u");
-	Greeting.add("Kamusta");
-	//ã‹L‚Ìˆ¥A‚ğƒRƒƒ“ƒg‚³‚ê‚é‚Æ•ÔM‚Å‚«‚é
-	return (Greeting); //‚±‚ÌƒNƒ‰ƒX‚ğŒÄ‚Ño‚·‚Æ"return"‚©‚çŒã‚ë‚Ì“à—e‚ğ•Ô‚·B‚±‚Ìê‡‚ÍGreeting”z—ñ“à‚Ì•¶š‚ğ•Ô‚·
+	return (Greeting); 
+	}
+	public List<String> MorningGreetings() {
+		List<String> MG = new ArrayList<String>();
+		MG.add("ãŠã¯ã‚ˆã†");
+		MG.add("Good Morning");
+		MG.add("Hello");
+		return (MG);
+	}
+	public List<String> NoonGreetings() {
+		List<String> NG = new ArrayList<String>();
+		NG.add("ã“ã‚“ã«ã¡ã¯");
+		NG.add("Good Afternoon");
+		NG.add("Hello");
+		return (NG);
+	}
+	public List<String> EveningGreetings() {
+		List<String> EG = new ArrayList<String>();
+		EG.add("ã“ã‚“ã°ã‚“ã¯");
+		EG.add("Good Evening");
+		return (EG);
+	}
+	public void GreetingResponse(SlackSession session) {
+		Random random = new Random();
+		int randomValue = random.nextInt(Greetings().size());
+		session.sendMessage(this.channel, Greetings().get(randomValue));
+	}
+	public void MorningGreetingResponse(SlackSession session) {
+		Random random = new Random();
+		int randomValue = random.nextInt(MorningGreetings().size());
+		session.sendMessage(this.channel, MorningGreetings().get(randomValue));
+	}
+	public void NoonGreetingResponse(SlackSession session) {
+		Random random = new Random();
+		int randomValue = random.nextInt(NoonGreetings().size());
+		session.sendMessage(this.channel, NoonGreetings().get(randomValue));
+	}
+	public void EveningGreetingResponse(SlackSession session) {
+		Random random = new Random();
+		int randomValue = random.nextInt(EveningGreetings().size());
+		session.sendMessage(this.channel, EveningGreetings().get(randomValue));
 	}
 }

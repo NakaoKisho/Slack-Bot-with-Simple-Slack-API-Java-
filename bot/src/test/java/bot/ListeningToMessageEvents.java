@@ -10,41 +10,49 @@ import com.ullink.slack.simpleslackapi.events.SlackMessagePosted;
 import com.ullink.slack.simpleslackapi.listeners.SlackMessagePostedListener;
 
 public class ListeningToMessageEvents {
-	//繝輔ぅ繝ｼ繝ｫ繝�
+	//受け取ったメッセージのふるい分け
 	private String content;
-	private String botName = "@UP83M6ATD"; //繝懊ャ繝亥錐(荳ｭ蟆ｾ蜻ｽ蜷�)繧剃ｻ｣蜈･
-	private String pattern = ("[\\n]|[\\r]|[\\t]");//繝懊ャ繝亥錐縺ｨ繧ｿ繝悶�∵隼陦後ｒ豁｣隕剰｡ｨ迴ｾ縺ｧ陦ｨ縺嶺ｻ｣蜈･
+	private String botName = "@UP83M6ATD"; //ボット番号
+	private String pattern = ("[\\n]|[\\r]|[\\t]");//空白・段落・！・？を消去
 	
 	public void registeringAListener(SlackSession session)
     {
         // first define the listener
-        SlackMessagePostedListener messagePostedListener = new SlackMessagePostedListener()
-        {
-            public void onEvent(SlackMessagePosted event, SlackSession session)
-            {
+        SlackMessagePostedListener messagePostedListener = new SlackMessagePostedListener(){
+            public void onEvent(SlackMessagePosted event, SlackSession session){
             	SlackChannel channel = event.getChannel();
             	String messageContent = event.getMessageContent();
             	content = messageContent.replaceAll(pattern,"").trim();
-            	Identifier id = new Identifier(content, channel); //毎回生成されるのでif分内に入れてもよいかもしれない
-            	System.out.println("---------------------------"); 
-            	System.out.println(event.getChannel());
-            	System.out.println(event.getSender());
-            	System.out.println("---------------------------");
+            	Identifier id = new Identifier(content, channel);
             	
-            	try{
-            		  File file = new File("C:\\Users\\kisho\\Documents\\MolersBot\\MeesageContents.txt");
-            		  FileWriter filewriter = new FileWriter(file);
-            		  String br = System.getProperty("line.separator");
-            		  filewriter.write(content + br);
-            		  filewriter.close();
-            		}catch(IOException e){
-            		  System.out.println(e);
-            		}
+            	if(!(event.getSender().getUserName().equals("molersbot"))&&!(content.contains("ちょっときいて"))) {
+            		try{
+              		  File file = new File("C:\\Users\\kisho\\Documents\\MolersBot\\MeesageContents.txt");
+              		  FileWriter filewriter = new FileWriter(file, true);
+              		  String br = System.getProperty("line.separator");
+              		  filewriter.write(br + "名前 : " + event.getSender().getUserName()+ br + " " + "内容 : " + content);
+              		  filewriter.close();
+              		}catch(IOException e){
+              		  System.out.println(e);
+              		}
+            	}
+            	
+            	if(content.contains("ちょっときいて")) {
+            		try{
+                		  File file = new File("C:\\Users\\kisho\\Documents\\MolersBot\\ComplaintMeesageContents.txt");
+                		  FileWriter filewriter = new FileWriter(file, true);
+                		  String br = System.getProperty("line.separator");
+                		  filewriter.write(br + "内容 : " + content);
+                		  filewriter.close();
+                		}catch(IOException e){
+                		  System.out.println(e);
+                		}
+            	}
             	
             	//メンションされれば別にどのチャンネルで反応してもよい
-            	if(content.contains(botName) && !(event.getSender().getId().equals("UP83M6ATD"))) {
+            	if(content.contains(botName) && !(event.getSender().getUserName().equals("molersbot"))) {
             		id.identifier(session);
-            	} else if(event.getChannel().getId().equals(/*"DP83M6BK5"*/"DS3P9QUAK") && !(event.getSender().getId().equals(/*"UP83M6ATD"*/"URQDKL1S7"))) { 
+            	} else if(!(event.getSender().getUserName().equals(/*"UP83M6ATD"*/"molersbot"))) { 
             		id.identifier(session);
             	}
             }
@@ -55,3 +63,9 @@ public class ListeningToMessageEvents {
 }
 
 //System.out.println("-------------------------");
+/*event.getChannel().getId().equals("DP83M6BK5""DS3P9QUAK") && */
+/*System.out.println("---------------------------"); 
+System.out.println(event.getChannel());
+System.out.println(event.getSender());
+System.out.println(event.getSender().getUserName());
+System.out.println("---------------------------");*/
