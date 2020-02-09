@@ -1,22 +1,45 @@
 package bot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.ullink.slack.simpleslackapi.SlackChannel;
+import com.ullink.slack.simpleslackapi.SlackSession;
+
 public class Weather {
+	
+	private SlackChannel channel;
+	
+	public Weather(SlackChannel channel) {
+		this.channel = channel;
+	}
+	
 	public List<String> WeatherPhrase() {
-		List<String> WeatherPhrase = new ArrayList<String>(); //ArrayList‚ğ¶¬
-		//“V‹CƒtƒŒ[ƒY’Ç‰Á
-		WeatherPhrase.add("“V‹C");
-		WeatherPhrase.add("“V‹C‚É‚Â‚¢‚Ä‹³‚¦‚Ä");
-		WeatherPhrase.add("“V‹C’m‚è‚½‚¢");
+		List<String> WeatherPhrase = new ArrayList<String>(); //ArrayListã‚’ç”Ÿæˆ
+		//å¤©æ°—ãƒ•ãƒ¬ãƒ¼ã‚ºè¿½åŠ 
+		WeatherPhrase.add("å¤©æ°—");
+		WeatherPhrase.add("å¤©æ°—ã«ã¤ã„ã¦æ•™ãˆã¦");
+		WeatherPhrase.add("å¤©æ°—çŸ¥ã‚ŠãŸã„");
 		WeatherPhrase.add("weather");
-		WeatherPhrase.add("“V‹C—\•ñ");
-		WeatherPhrase.add("¡“ú‚Ì“V‹C");
-		WeatherPhrase.add("‰J‚Ó‚é");
-		WeatherPhrase.add("°‚ê‚é");
-		WeatherPhrase.add("“Ü‚é");
-		//ã‹L‚Ìˆ¥A‚ğƒRƒƒ“ƒg‚³‚ê‚é‚Æ•ÔM‚Å‚«‚é
-		return (WeatherPhrase); //‚±‚ÌƒNƒ‰ƒX‚ğŒÄ‚Ño‚·‚Æ"return"‚©‚çŒã‚ë‚Ì“à—e‚ğ•Ô‚·B‚±‚Ìê‡‚ÍWeather”z—ñ“à‚Ì•¶š‚ğ•Ô‚·
+		WeatherPhrase.add("å¤©æ°—äºˆå ±");
+		WeatherPhrase.add("ä»Šæ—¥ã®å¤©æ°—");
+		WeatherPhrase.add("é›¨ãµã‚‹");
+		WeatherPhrase.add("æ™´ã‚Œã‚‹");
+		WeatherPhrase.add("æ›‡ã‚‹");
+		//ä¸Šè¨˜ã®æŒ¨æ‹¶ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã•ã‚Œã‚‹ã¨è¿”ä¿¡ã§ãã‚‹
+		return (WeatherPhrase); //ã“ã®ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã™ã¨"return"ã‹ã‚‰å¾Œã‚ã®å†…å®¹ã‚’è¿”ã™ã€‚ã“ã®å ´åˆã¯Weatheré…åˆ—å†…ã®æ–‡å­—ã‚’è¿”ã™
 		}
+	public void WeatherResponse(SlackSession session) {
+		GetWeatherByOkHttp gw = new GetWeatherByOkHttp();
+		try {
+			Gson gson = new Gson();
+			WeatherEntity WeE = gson.fromJson(gw.getWeatherByOkHttp(), WeatherEntity.class);
+			session.sendMessage(this.channel, "æ±äº¬ã®ä»Šæ—¥ã®å¤©æ°—ã¯" + gson.toJson(WeE.getForecasts().get(1).getTelop()) + "ã§ã™" + "\n" + "æœ€é«˜æ°—æ¸© : " + gson.toJson(WeE.getForecasts().get(1).getTemperature().getMax().getCelsius()).replace("\"", "") + "åº¦" + "\n" + "æœ€ä½æ°—æ¸© : " +  gson.toJson(WeE.getForecasts().get(1).getTemperature().getMin().getCelsius()).replace("\"", "") + "åº¦");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 }
