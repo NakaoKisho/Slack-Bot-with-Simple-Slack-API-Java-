@@ -9,7 +9,7 @@ import okhttp3.Response;
 public class GetWeatherByOkHttp{
 	public String getWeatherByOkHttp() throws IOException {
 		Request request = new Request.Builder()
-	        		.url("http://weather.livedoor.com/forecast/webservice/json/v1?city=130010")
+	        		.url("http://weather.livedoor.com/forecast/webservice/json/v1?city=" + "130010")
 	                 .get()
 	                 .build();
 

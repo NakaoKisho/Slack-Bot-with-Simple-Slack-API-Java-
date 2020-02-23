@@ -8,7 +8,7 @@ public class WeatherEntity {
     private String title;
     private DescriptionEntity description;
     private String link;
-    private List<ForecastEntity> forecast;
+    private List<ForecastsEntity> forecasts;
     private LocationEntity location;
     private List<PinpointLocationEntity> pinpointLocations;
     private CopyrightEntity copyright;
@@ -25,8 +25,8 @@ public class WeatherEntity {
     public String getLink() {
     	return this.link;
     }
-    public List<ForecastEntity> getForecast() {
-    	return this.forecast;
+    public List<ForecastsEntity> getForecasts() {
+    	return this.forecasts;
     }
     public LocationEntity getLocation() {
     	return this.location;
@@ -43,7 +43,7 @@ public class WeatherEntity {
                 ", title='" +this. title + '\'' +
                 ", description='" + this.description + '\'' +
                 ", link=" + this.link +
-                ", forecasts=" + this.forecast +
+                ", forecasts=" + this.forecasts +
                 "location='" + this.location + '\'' +
                 ", pinpointLocations='" + this.pinpointLocations + '\'' +
                 ", copyright=" + this.copyright +

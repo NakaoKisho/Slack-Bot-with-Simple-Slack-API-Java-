@@ -19,7 +19,6 @@ private SlackChannel channel;
 		return (ComplaintPhrase);
 		}
 	public void ComplaintResponse(SlackSession session) {
-		String br = System.getProperty("line.separator");
-		session.sendMessage(this.channel, "ご要望ありがとうございます。" + br + "一週間以内に会社にお伝えします。");
+		session.sendMessage(this.channel, "ご要望ありがとうございます!");
 	}
 }

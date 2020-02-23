@@ -2,6 +2,7 @@ package bot;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.ullink.slack.simpleslackapi.SlackChannel;
 import com.ullink.slack.simpleslackapi.SlackSession;
@@ -68,11 +69,18 @@ public class Identifier {
 			}
 		}
 	  Weather we = new Weather(this.channel);
-	  List<String> WeatherPhrase =we.WeatherPhrase(); 
-		Iterator<String> itFwp = WeatherPhrase.iterator();
-		while(itFwp.hasNext()) {
-			String e = itFwp.next();
+	  City city =new City(this.channel);
+	  List<String> WeatherPhrase =we.WeatherPhrase();
+	  Map<String, String> City = city.City();
+	  Iterator<String> itWp = WeatherPhrase.iterator();
+	  Iterator<String> itCi = City.keySet().iterator();
+	  while(itWp.hasNext()) {
+		  String e = itWp.next();
 			if(content.contains(e)) {
+				while(itCi.hasNext()) {
+					String str = (String)itCi.hasNext();
+					if(content.contains())
+				}
 				we.WeatherResponse(session);
 				break;
 			}

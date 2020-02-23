@@ -12,11 +12,5 @@ public class Main {
 		ListeningToMessageEvents ltme = new ListeningToMessageEvents();
 		ltme.registeringAListener(session);
 		session.connect();
-		
 	}
 }
-
-/*対応予定内容*/
-//googleカレンダーとの連携
-//天気
-//所在確認(本社にいるか)
